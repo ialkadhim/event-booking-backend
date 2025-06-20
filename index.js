@@ -7,7 +7,7 @@ const cors = require('cors');
 const { Pool } = require('pg');
 const bcrypt = require('bcrypt');
 
-app.use(cors());
+app.use(cors({ origin: 'https://racquetek.com' }));
 app.use(bodyParser.json());
 
 const pool = new Pool({
