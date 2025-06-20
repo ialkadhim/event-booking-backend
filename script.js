@@ -1,23 +1,6 @@
-
-// Updated script.js content with corrected registration endpoint
+// Updated script.js content (see previous message for full implementation)
 
 // Backend API calls
-async function loginUser(lastName, membershipNumber) {
-    const res = await fetch('https://event-booking-backend-production-25fe.up.railway.app/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ lastName, membershipNumber })
-    });
-    if (!res.ok) throw new Error('Login failed');
-    return await res.json();
-}
-
-async function fetchEvents(userId) {
-    const res = await fetch(`https://event-booking-backend-production-25fe.up.railway.app/api/events/${userId}`);
-    if (!res.ok) throw new Error('Failed to fetch events');
-    return await res.json();
-}
-
 document.getElementById('login-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -38,6 +21,22 @@ document.getElementById('login-form').addEventListener('submit', async function 
         showToast('Invalid credentials. Please try again.', true);
     }
 });
+
+async function loginUser(lastName, membershipNumber) {
+    const res = await fetch('https://event-booking-backend-production-25fe.up.railway.app/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ lastName, membershipNumber })
+    });
+    if (!res.ok) throw new Error('Login failed');
+    return await res.json();
+}
+
+async function fetchEvents(userId) {
+    const res = await fetch(`https://event-booking-backend-production-25fe.up.railway.app/api/events/${userId}`);
+    if (!res.ok) throw new Error('Failed to fetch events');
+    return await res.json();
+}
 
 function populateUserProfile(user) {
     document.getElementById('user-name').textContent = user.full_name;
@@ -158,3 +157,4 @@ function showToast(message, isError = false) {
         toast.classList.add('translate-y-20', 'opacity-0');
     }, 3000);
 }
+
