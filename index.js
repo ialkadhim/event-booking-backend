@@ -69,7 +69,7 @@ app.post('/api/seed', async (req, res) => {
   try {
     await pool.query(`
       INSERT INTO users (last_name, membership_number, full_name, gender, tennis_competency_level, status, email, phone, membership_type, join_date, expiry_date)
-      VALUES ('Park', '12345', 'Subin Park', 'Male', 'Intermediate', 'Active', 'subin@example.com', '+1 (555) 123-4567', 'Premium', '2022-01-15', '2024-01-15')
+      VALUES ('Bukhari', '12345', 'Maaly Bukhari', 'Female', 'Intermediate', 'Active', 'subin@example.com', '+1 (555) 123-4567', 'Premium', '2022-01-15', '2026-01-15')
       ON CONFLICT (membership_number) DO NOTHING;
     `);
     res.json({ message: 'Seeded user' });
